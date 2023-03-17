@@ -8,32 +8,46 @@ public class Main {
         Stack stack = new Stack(size);
 
         while (true) {
-            System.out.println("1. Push element");
-            System.out.println("2. Push multiple elements");
-            System.out.println("3. Pop element");
-            System.out.println("4. Print stack");
-            System.out.println("5. Exit");
+            System.out.println("3. Push element");
+            System.out.println("4. Push multiple elements");
+            System.out.println("5. Pop element");
+            System.out.println("6. Print stack");
+            System.out.println("7. Exit");
 
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
+                    if (stack.isEmpty()) {
+                        System.out.println("Стек пустой.");
+                    } else {
+                        System.out.println("Стек не пустой.");
+                    }
+                    break;
+                case 2:
+                    if (stack.isFull()) {
+                        System.out.println("Стек полный.");
+                    } else {
+                        System.out.println("Стек не полный.");
+                    }
+                    break;
+                case 3:
                     System.out.print("Enter element to push: ");
                     int element = scanner.nextInt();
                     stack.push(element);
                     break;
-                case 2:
+                case 4:
                     System.out.print("Enter number of elements to push: ");
                     int count = scanner.nextInt();
                     stack.pushMultiple(count);
                     break;
-                case 3:
+                case 5:
                     stack.pop();
                     break;
-                case 4:
+                case 6:
                     stack.printStack();
                     break;
-                case 5:
+                case 7:
                     System.exit(0);
                 default:
                     System.out.println("Invalid choice!");
