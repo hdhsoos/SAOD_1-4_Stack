@@ -151,6 +151,7 @@ public class Stack {
                             System.out.println("Неверный ввод.");
                             break;
                     }
+                    break;
                 case 4:
                     System.out.print("Введите количество элементов для добавления: ");
                     int count = scanner.nextInt();
