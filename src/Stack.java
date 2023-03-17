@@ -5,11 +5,13 @@ public class Stack {
     private int[] stackArray;
     private int top;
     private int size;
+    private miniStack deletedStack;
 
     public Stack(int size) {
         stackArray = new int[size];
         top = -1;
         this.size = size;
+        deletedStack = new miniStack(size);
     }
 
     public boolean isEmpty() {
@@ -45,7 +47,25 @@ public class Stack {
         if (isEmpty()) {
             System.out.println("Stack is empty!");
         } else {
-            top--;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("What to do with the removed element?");
+            System.out.println("1. Delete permanently");
+            System.out.println("2. Add to deleted elements stack");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    top--;
+                    break;
+                case 2:
+                    int element = stackArray[top];
+                    top--;
+                    deletedStack.push(element);
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+                    break;
+            }
         }
     }
 
@@ -56,6 +76,15 @@ public class Stack {
             for (int i = top; i >= 0; i--) {
                 System.out.println(stackArray[i]);
             }
+        }
+    }
+
+    public void printDeletedStack() {
+        if (deletedStack.isEmpty()) {
+            System.out.println("Deleted elements stack is empty!");
+        } else {
+            System.out.println("Deleted elements stack:");
+            deletedStack.printStack();
         }
     }
 
@@ -73,7 +102,8 @@ public class Stack {
             System.out.println("4. Push multiple elements");
             System.out.println("5. Pop element");
             System.out.println("6. Print stack");
-            System.out.println("7. Exit");
+            System.out.println("7. Print Deleted stack");
+            System.out.println("8. Exit");
 
             int choice = scanner.nextInt();
 
@@ -109,6 +139,9 @@ public class Stack {
                     stack.printStack();
                     break;
                 case 7:
+                    stack.printDeletedStack();
+                    break;
+                case 8:
                     System.exit(0);
                 default:
                     System.out.println("Invalid choice!");
