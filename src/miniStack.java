@@ -41,12 +41,15 @@ public class miniStack {
         }
     }
 
-    public void pop() {
-        if (isEmpty()) {
-            System.out.println("Stack is empty!");
-        } else {
-            top--;
-        }
+    public int pop() {
+        //if (isEmpty()) {
+        //    System.out.println("Stack is empty!");
+        //} else {
+        int res;
+        res = stackArray[top];
+        top--;
+        return res;
+        //}
     }
 
     public void printStack() {
@@ -54,8 +57,10 @@ public class miniStack {
             System.out.println("Stack is empty!");
         } else {
             for (int i = top; i >= 0; i--) {
-                System.out.println(stackArray[i]);
+                System.out.print(stackArray[i]);
+                System.out.print(' ');
             }
+            System.out.println();
         }
     }
 }

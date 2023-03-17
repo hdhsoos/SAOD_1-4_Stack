@@ -73,9 +73,12 @@ public class Stack {
         if (isEmpty()) {
             System.out.println("Stack is empty!");
         } else {
+            System.out.println("Main Stack:");
             for (int i = top; i >= 0; i--) {
-                System.out.println(stackArray[i]);
+                System.out.print(stackArray[i]);
+                System.out.print(' ');
             }
+            System.out.println();
         }
     }
 
@@ -85,6 +88,15 @@ public class Stack {
         } else {
             System.out.println("Deleted elements stack:");
             deletedStack.printStack();
+        }
+    }
+    
+    public void pushFromdeletedStack() {
+        if (deletedStack.isEmpty()) {
+            System.out.println("Removed stack is empty");
+        }
+        else {
+            push(deletedStack.pop());
         }
     }
 
@@ -123,10 +135,23 @@ public class Stack {
                     }
                     break;
                 case 3:
-                    System.out.print("Enter element to push: ");
-                    int element = scanner.nextInt();
-                    stack.push(element);
-                    break;
+                    System.out.println("Вы хотите взять элемент из стека удаленных элементов или ввести новый элемент?");
+                    System.out.println("1. Стек удаленных элементов.");
+                    System.out.println("2. Новый элемент.");
+                    int choice2 = scanner.nextInt();
+                    switch (choice2) {
+                        case 1:
+                            stack.pushFromdeletedStack();
+                            break;
+                        case 2:
+                            System.out.print("Enter element to push: ");
+                            int element = scanner.nextInt();
+                            stack.push(element);
+                            break;
+                        default:
+                            System.out.println("Invalid choice!");
+                            break;
+                    }
                 case 4:
                     System.out.print("Enter number of elements to push: ");
                     int count = scanner.nextInt();
