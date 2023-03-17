@@ -22,7 +22,7 @@ public class miniStack {
 
     public void push(int element) {
         if (isFull()) {
-            System.out.println("Stack is full!");
+            System.out.println("Стек наполнен.");
         } else {
             top++;
             stackArray[top] = element;
@@ -31,7 +31,7 @@ public class miniStack {
 
     public void pushMultiple(int count) {
         if (count > size - top - 1) {
-            System.out.println("Not enough space in stack!");
+            System.out.println("В стеке не осталось места.");
         } else {
             Random random = new Random();
             for (int i = 0; i < count; i++) {
@@ -42,19 +42,20 @@ public class miniStack {
     }
 
     public int pop() {
-        //if (isEmpty()) {
-        //    System.out.println("Stack is empty!");
-        //} else {
-        int res;
-        res = stackArray[top];
-        top--;
-        return res;
-        //}
+        if (isEmpty()) {
+            System.out.println("Стек пустой.");
+            return 0;
+        } else {
+            int res;
+            res = stackArray[top];
+            top--;
+            return res;
+        }
     }
 
     public void printStack() {
         if (isEmpty()) {
-            System.out.println("Stack is empty!");
+            System.out.println("Стек пустой.");
         } else {
             for (int i = top; i >= 0; i--) {
                 System.out.print(stackArray[i]);

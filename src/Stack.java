@@ -24,7 +24,7 @@ public class Stack {
 
     public void push(int element) {
         if (isFull()) {
-            System.out.println("Stack is full!");
+            System.out.println("Стек наполнен.");
         } else {
             top++;
             stackArray[top] = element;
@@ -33,7 +33,7 @@ public class Stack {
 
     public void pushMultiple(int count) {
         if (count > size - top - 1) {
-            System.out.println("Not enough space in stack!");
+            System.out.println("В стеке не осталось места.");
         } else {
             Random random = new Random();
             for (int i = 0; i < count; i++) {
@@ -45,14 +45,13 @@ public class Stack {
 
     public void pop() {
         if (isEmpty()) {
-            System.out.println("Stack is empty!");
+            System.out.println("Стек пуст.");
         } else {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("What to do with the removed element?");
-            System.out.println("1. Delete permanently");
-            System.out.println("2. Add to deleted elements stack");
+            System.out.println("Что сделать с удаленным элементом?");
+            System.out.println("1. Удалить полностью.");
+            System.out.println("2. Добавить удаленный элемент в стек для удаленных элементов.");
             int choice = scanner.nextInt();
-
             switch (choice) {
                 case 1:
                     top--;
@@ -63,7 +62,7 @@ public class Stack {
                     deletedStack.push(element);
                     break;
                 default:
-                    System.out.println("Invalid choice!");
+                    System.out.println("Ошибка ввода.");
                     break;
             }
         }
@@ -71,9 +70,9 @@ public class Stack {
 
     public void printStack() {
         if (isEmpty()) {
-            System.out.println("Stack is empty!");
+            System.out.println("Стек пустой.");
         } else {
-            System.out.println("Main Stack:");
+            System.out.println("Основной стек:");
             for (int i = top; i >= 0; i--) {
                 System.out.print(stackArray[i]);
                 System.out.print(' ');
@@ -84,16 +83,16 @@ public class Stack {
 
     public void printDeletedStack() {
         if (deletedStack.isEmpty()) {
-            System.out.println("Deleted elements stack is empty!");
+            System.out.println("Стек для удаленных элементов пустой.");
         } else {
-            System.out.println("Deleted elements stack:");
+            System.out.println("Стек для удаленных элементов:");
             deletedStack.printStack();
         }
     }
     
     public void pushFromdeletedStack() {
         if (deletedStack.isEmpty()) {
-            System.out.println("Removed stack is empty");
+            System.out.println("Стек для удаленных элементов пуст.");
         }
         else {
             push(deletedStack.pop());
@@ -102,7 +101,7 @@ public class Stack {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter stack size: ");
+        System.out.print("Введите длину стека: ");
         int size = scanner.nextInt();
         Stack stack = new Stack(size);
 
@@ -110,12 +109,12 @@ public class Stack {
             System.out.println("\nВыберите действие:");
             System.out.println("1. Проверка пустоты стека");
             System.out.println("2. Проверка заполненности стека");
-            System.out.println("3. Push element");
-            System.out.println("4. Push multiple elements");
-            System.out.println("5. Pop element");
-            System.out.println("6. Print stack");
-            System.out.println("7. Print Deleted stack");
-            System.out.println("8. Exit");
+            System.out.println("3. Добавление элемента на вершину стека");
+            System.out.println("4. Добавление нескольких случайных элементов на вершину стека");
+            System.out.println("5. Удаление элемента из вершина стека");
+            System.out.println("6. Вывод основного стека на экран");
+            System.out.println("7. Вывод стека удаленных элементов на экран");
+            System.out.println("8. Выход");
 
             int choice = scanner.nextInt();
 
@@ -144,16 +143,16 @@ public class Stack {
                             stack.pushFromdeletedStack();
                             break;
                         case 2:
-                            System.out.print("Enter element to push: ");
+                            System.out.print("Введите элемент для добавления: ");
                             int element = scanner.nextInt();
                             stack.push(element);
                             break;
                         default:
-                            System.out.println("Invalid choice!");
+                            System.out.println("Неверный ввод.");
                             break;
                     }
                 case 4:
-                    System.out.print("Enter number of elements to push: ");
+                    System.out.print("Введите количество элементов для добавления: ");
                     int count = scanner.nextInt();
                     stack.pushMultiple(count);
                     break;
@@ -169,7 +168,7 @@ public class Stack {
                 case 8:
                     System.exit(0);
                 default:
-                    System.out.println("Invalid choice!");
+                    System.out.println("Неверный ввод.");
                     break;
             }
         }
